@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+
+public class Pila<T> {
+    private ArrayList<T> elementos;
+
+    public Pila() {
+        elementos = new ArrayList<>();
+    }
+
+    public boolean isEmpty() {
+        return elementos.isEmpty();
+    }
+
+    public void push(T dato) {
+        elementos.add(dato);
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            return null;
+        }
+        return elementos.remove(elementos.size() - 1);
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return elementos.get(elementos.size() - 1);
+    }
+
+    public int size() {
+        return elementos.size();
+    }
+}
