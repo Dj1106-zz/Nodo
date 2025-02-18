@@ -1,0 +1,22 @@
+class Pila:
+    def __init__(self):
+        self.elemento = []
+
+    def is_empty(self):
+        return len(self.elemento) == 0
+
+    def push(self, dato):
+        self.elemento.append(dato)
+
+    def pop(self):
+        if self.is_empty():
+            return None
+        return self.elemento.pop()
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.elemento[-1]
+
+    def size(self):
+        return len(self.elemento)
