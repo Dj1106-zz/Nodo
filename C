@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+typedef struct Nodo {
+    int dato;
+    struct Nodo* siguiente;
+} Nodo;
+
+typedef struct Pila {
+    Nodo* cima;
+    int tamano;
+} Pila;
+
+// Crear una pila vacía
+Pila* crear_pila() {
+    Pila* pila = (Pila*)malloc(sizeof(Pila));
+    pila->cima = NULL;
+    pila->tamano = 0;
+    return pila;
+}
+
+// Verificar si la pila está vacía
+bool is_empty(Pila* pila) {
+    return pila->cima == NULL;
+}
+
+// Agregar un elemento a la pila
+void push(Pila* pila, int dato) {
+    Nodo* nuevo_nodo = (Nodo*)malloc(sizeof(Nodo));
+    nuevo_nodo->dato = dato;
+    nuevo_nodo->siguiente = pila->cima;
+    pila->cima = nuevo_nodo;
+    pila->tamano++;
+}
+
+// Remover el elemento superior de la pila
+int pop(Pila* pila) {
+    if (is_empty(pila)) {
+        return -1;  // Valor de error
+    }
+    Nodo* temp = pila->cima;
+    int dato = temp->dato;
+    pila->cima = pila->cima->siguiente;
+    free(temp);
+    pila->tamano--;
+    return dato;
+}
+
+// Obtener el elemento superior sin removerlo
+int peek(Pila* pila) {
+    if (is_empty(pila)) {
+        return -1;  // Valor de error
+    }
+    return pila->cima->dato;
+}
+
+// Obtener el tamaño de la pila
+int size(Pila* pila) {
+    return pila->tamano;
+}
